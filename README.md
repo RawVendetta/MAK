@@ -12,15 +12,23 @@ More Advanced Keylogging for Python. This repository contains a framework to str
 > read_data.py is a simple implementation to read the logged keystroke events stored in __*received_data.log*__
 - __inspectimage.py__
 > inspectimage.py is an example implementation of converting the __*screenshotY/M/D/h/m/s.txt*__ files in __*/CapturedImages/*__ into .png files and store them in __*/CapturedImages/Converted/*__
+- __requirements.txt__
+> The very few requirements it takes to run MAK
 ---
 ## Using this repository
 ### Start logging with MAK:
+First, ensure you have the few requirements needed:
+
+`pip install -r requirements.txt`
+
+__To begin:__
+
 `python mak.pyw` or `python3 mak.pyw` or Double Click __"mak.pyw"__
 
 Run mak.pyw and it will open a socket on the host and port specified by s_host and s_port in the code of listener.py and daemon.py 
 
 *(Default: s_host:s_port // 'localhost':9999)*. 
-> After execution all keystroke events are logged and sent to the listener, which is currently configured to save the log data in the same folder as the python programs. Additionally, screenshots are taken on a set interval specified by ss_interval in daemon.py and sent to the listener.
+> After execution all keystroke events are logged and sent to the listener, which is currently configured to save the log data in the same folder as the python programs. Additionally, screenshots are taken on a set interval specified by ss_interval *(Default: 1 second)* in daemon.py and sent to the listener.
 
 To use this code externally, you need to modify s_host and s_port to your specification. listener.py will be ran on the server and daemon.py will need to be ran on the remote client. The method used in mak.pyw can be used to spawn the daemon as a background process.
 > By changing this configuration, all exfiltrated data is sent to the remote server rather than stored on the client. If there are issues receiving data, there is likely a firewall conflict between the server and client.
